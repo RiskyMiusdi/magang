@@ -40,15 +40,21 @@ class pengadaan_aset(models.Model):
       name                  = fields.Char(string="Id Pengadaan")
       judul_pengadaan_aset  = fields.Char(string="Judul Pengadaan")      
       id_pengaju            = fields.Many2one('res.users', ondelete='cascade', string="ID Pengaju", required=True)                  
-      # merek                 = fields.Many2one('tabel.aset', ondelete='cascade', string="Merek", required=True)                
       merek                 = fields.Char(string="Merek")                
       tanggal_pengadaan     = fields.Date()
+      jumlah            = fields.Float()
+      harga_per_unit    = fields.Integer()
+      harga_total       = fields.Float(compute="_value_pc", store=True) 
       keterangan            = fields.Text(string="alasan pengadaan")
       state = fields.Selection([
         ('draft', 'Draft'),
         ('diajukan', 'Diajukan'),
         ('disetujui', 'Disetujui'),
         ], string='Status', readonly=True, copy=False, default='draft', track_visibility='onchange')
+
+      @api.depends('harga_per_unit', 'jumlah' )
+      def _value_pc(self):
+          self.harga_total = float(self.harga_per_unit) * self.jumlah
 
       @api.multi
       def cetak_pengadaan(self):
@@ -73,14 +79,12 @@ class peminjaman_aset(models.Model):
       name                      = fields.Char(string="Id Peminjaman")
       judul_peminjaman          = fields.Char(string="Judul Peminjaman")      
       merek                     = fields.Many2one('tabel.aset', ondelete='cascade', string="Merek", required=True)
-      # fields.Char(string="Merek Aset")
       jumlah_pinjam             = fields.Integer()
       tanggal_peminjaman        = fields.Date()      
       keperluan                 = fields.Text()
       lokasi_penggunaan         = fields.Char(string="lokasi penggunaan")
       tanggal_kembali           = fields.Date()   
-      id_peminjam               = fields.Many2one('res.users', ondelete='cascade', string="ID Peminjam", required=True)
-      # nama_peminjam             = fields.Char(string="nama peminjam")
+      id_peminjam               = fields.Many2one('res.users', ondelete='cascade', string="ID Peminjam", required=True)     
       state = fields.Selection([
         ('draft', 'Draft'),
         ('diajukan', 'Diajukan'),
@@ -110,28 +114,15 @@ class inventarisasi_aset(models.Model):
       _name = 'tabel.inventaris.aset'
 
       name                      = fields.Char(string="Id Inventaris")
-      judul_inventaris          = fields.Char(string="Judul Inventaris")      
-      # ?id_inventaris             = fields.Char(string="id inventaris")
-      merek                     = fields.Char(string="Merek Aset")
+      judul_inventaris          = fields.Char(string="Judul Inventaris")            
+      merek                     = fields.Many2one('tabel.aset', ondelete='cascade', string="Merek", required=True)    
       jumlah_aset               = fields.Integer()
       kondisi_baik              = fields.Integer()
       kondisi_rusak             = fields.Integer()      
       kondisi_dalam_perbaikan   = fields.Integer()
       tanggal_inventaris        = fields.Date()
-      tanggal_dimusnahkan       = fields.Date()   
-      lokasi_aset               = fields.Char(string="lokasi terkini")
-      harga_per_unit            = fields.Char(string="harga per unit")
-      harga_total_aset          = fields.Char(string="harga total aset")
-      tanggal_pengadaan         = fields.Date()
-      kode_pengadaan            = fields.Char(string="kode pengadaan")
-      status_pengadaan          = fields.Char(string="status pengadaan")
-      nama_pengaju              = fields.Char(string="nama pengaju")
-      id_pengaju                = fields.Char(string="id pengaju")
-      petugas_aproval           = fields.Char(string="petugas aproval")
-      id_petugas                = fields.Char(string="id petugas")
-      keterangan                = fields.Char(string="keterangan")
-      kode_inventaris           = fields.Char(string="kode inventaris")
-      petugas_inventaris        = fields.Char(string="petugas inventaris")
+      petugas_inventaris        = fields.Many2one('res.users', ondelete='cascade', string="Petugas Inventaris", required=True)
+      catatan                   = fields.Text()
 
       state = fields.Selection([
         ('draft', 'Draft'),

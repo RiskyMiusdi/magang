@@ -7,16 +7,16 @@
                 <div class="page">
                     <div class="oe_structure"/>
 
-                    <h1 class="text-center">Laporan Pengadaan</h1>
+                    <h1 class="text-center">Laporan Pengadaanxx</h1>
 
                     <div class="row mt32 mb32">
                         <div t-if="o.name" class="col-xs-3">
-                            <strong>ID Aset :</strong>
+                            <strong>ID Pengadaan :</strong>
                             <p t-field="o.name"/>
                         </div>
-                        <div t-if="o.judul_pengadaan" class="col-xs-3">
-                            <strong>judul_pengadaan :</strong>
-                            <p t-field="o.judul_pengadaan"/>
+                        <div t-if="o.judul_pengadaan_aset" class="col-xs-3">
+                            <strong>judul_pengadaan_aset :</strong>
+                            <p t-field="o.judul_pengadaan_aset"/>
                         </div>
                         <div t-if="o.jumlah" class="col-xs-3">
                             <strong>jumlah :</strong>
@@ -30,8 +30,10 @@
                                 <th><strong>Merek</strong></th>
                                 <th><strong>Harga Per Unit</strong></th>
                                 <th><strong>Harga Total</strong></th>
+                                <!-- <th><strong>Foto</strong></th> -->
+                                <th><strong>ID Pengaju</strong></th>
+                                <th><strong>tanggal_pengadaan</strong></th>
                                 <th><strong>Keterangan</strong></th>
-                                <th><strong>Foto</strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,15 +53,29 @@
                                         <p t-field="o.harga_total"/>
                                     </span>
                                 </td>
+                                <!-- <td>
+                                    <span>
+                                        <p t-field="o.foto"/>
+                                    </span>
+                                </td> -->
                                 <td>
                                     <span>
-                                        <p t-field="o.nama_pengaju"/>
+                                        <p t-field="o.id_pengaju"/>
                                     </span>
                                 </td>
                                 <td>
-                                    <span>
-                                    
-                                        <p t-field="o.petugas_aproval"/>
+                                    <span>                                    
+                                        <p t-field="o.tanggal_pengadaan"/>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span>                                    
+                                        <p t-field="o.keterangan"/>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span>                                    
+                                        <p t-field="o.id_pengaju"/>
                                     </span>
                                 </td>
                             </tr>
@@ -88,7 +104,7 @@
         </template>
 
         <report 
-            string="Laporan Pengadaan" 
+            string="Laporan Pengadaanzzzzzzzzz" 
             id="cpl_action_laporan_pengadaan" 
             model="tabel.pengadaan.aset" 
             report_type="qweb-pdf"

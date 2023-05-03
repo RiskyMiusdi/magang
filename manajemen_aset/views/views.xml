@@ -99,7 +99,6 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>   
-          <field name="ruang_kerja"/>    
         </tree>
       </field>
     </record>
@@ -154,19 +153,14 @@
                     <page string="Informasi Pribadi">
                       <group>
                           <field name="no_telepon"/>
-                          <field name="ruang_kerja"/>                          
+                          <field name="ruang_kerja"/>
+                          <field name="hak_akses"/>                          
                       </group>
                     </page>
-                    <page string="Lain-lain">
-                      <group>
-                          <field name="hak_akses"/>
-                      </group>
-                    </page>                    
                   </notebook>                                                            
               </sheet>
             </form>
-          </xpath>
-                        
+          </xpath>                    
         </field>        
     </record>
 
@@ -224,6 +218,11 @@
                 <field name="judul_pengadaan_aset"/>
                 <field name="merek"/>
                 <field name="id_pengaju"/>              
+                <field name="jumlah" required="1"/>
+                <field name="harga_per_unit" required="1"/>            
+                <field name="harga_total" required="1" />	   
+                <field name="tanggal_pengadaan"/>         
+                <field name="keterangan"/>              
               </group>
             </group>
           </sheet>
@@ -314,7 +313,7 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>          
-          <field name="lokasi_aset"/>                    
+          <field name="jumlah_aset"/>                    
         </tree>
       </field>
     </record>
@@ -348,24 +347,17 @@
           </header>
                 <sheet>
             <group>
-              <group string="Formulir inventaris Aset">
-                <field name="name"/>
+              <group string="Formulir inventaris Aset">                
+                <field name="name" required="1"/>
                 <field name="judul_inventaris"/>
+                <field name="merek"/>
+                <field name="jumlah_aset"/>
                 <field name="kondisi_baik"/>
                 <field name="kondisi_rusak"/>
                 <field name="kondisi_dalam_perbaikan"/>
-                <field name="tanggal_inventaris"/>
-                <field name="lokasi_aset"/>
-                <field name="harga_per_unit"/>
-                <field name="harga_total_aset"/>
-                <field name="tanggal_pengadaan"/>
-                <field name="kode_pengadaan"/>
-                <field name="status_pengadaan"/>
-                <field name="nama_pengaju"/>
-                <field name="petugas_aproval"/>
-                <field name="keterangan"/>
-                <field name="kode_inventaris"/>
-                <field name="petugas_inventaris"/>                
+                <field name="tanggal_inventaris"/>          
+                <field name="petugas_inventaris"/>
+                <field name="catatan"/>
               </group>
             </group>
           </sheet>
@@ -373,8 +365,6 @@
       </field>
     </record>
 	    
-    
-
     <!-- actions -->
     
     <menuitem name="Inventaris Aset" id="manajemen_aset.menu_5_list" parent="manajemen_aset.menu_2"

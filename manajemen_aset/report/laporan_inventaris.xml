@@ -7,20 +7,28 @@
                 <div class="page">
                     <div class="oe_structure"/>
 
-                    <h1 class="text-center">Resep Obat</h1>
+                    <h1 class="text-center">Laporan Inventaris Aset</h1>
 
                     <div class="row mt32 mb32">
                         <div t-if="o.name" class="col-xs-3">
-                            <strong>Nomor :</strong>
+                            <strong>Id Inventaris :</strong>
                             <p t-field="o.name"/>
                         </div>
                         <div t-if="o.kondisi_rusak" class="col-xs-3">
                             <strong>kondisi rusak :</strong>
                             <p t-field="o.kondisi_rusak"/>
                         </div>
-                        <div t-if="o.keterangan" class="col-xs-3">
-                            <strong>keterangan :</strong>
-                            <p t-field="o.keterangan"/>
+                        <div t-if="o.catatan" class="col-xs-3">
+                            <strong>catatan :</strong>
+                            <p t-field="o.catatan"/>
+                        </div>
+                        <div t-if="o.tanggal_inventaris" class="col-xs-3">
+                            <strong>Tanggal Inventaris :</strong>
+                            <p t-field="o.tanggal_inventaris"/>
+                        </div>
+                        <div t-if="o.petugas_inventaris" class="col-xs-3">
+                            <strong>Petugas Inventaris :</strong>
+                            <p t-field="o.petugas_inventaris"/>
                         </div>
 
 
@@ -29,11 +37,11 @@
                     <table class="table table-condensed">
                         <thead>
                             <tr>
-                                <th><strong>Obat</strong></th>
-                                <th><strong>Aturan Minum</strong></th>
-                                <th><strong>Sebelum/Sesudah Makan</strong></th>
-                                <th><strong>Quantity</strong></th>
-                                <th><strong>Satuan</strong></th>
+                                <th><strong>Judul Inventaris</strong></th>
+                                <th><strong>Jumlah Aset Minum</strong></th>
+                                <th><strong>Kondisi Baik</strong></th>
+                                <th><strong>Merek</strong></th>
+                                <th><strong>kondisi Dalam Perbaikan</strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,27 +49,31 @@
                                 <td>
                                     <span>
                                         
-                                        <p t-field="o.name"/>
+                                        <p t-field="o.judul_inventaris"/>
                                     </span>
                                 </td>
                                 <td>
                                     <span>
-                                        jumlah
+                                        <p t-field="o.jumlah_aset"/>
+                                        
                                     </span>
                                 </td>
                                 <td>
                                     <span>
-                                    keterangan
+                                        <p t-field="o.kondisi_baik"/>
+                                    
                                     </span>
                                 </td>
                                 <td>
                                     <span>
-                                    merek
+                                        <p t-field="o.merek"/>
+                                    
                                     </span>
                                 </td>
                                 <td>
                                 <span>
-                                kode_pengadaan
+                                
+                                        <p t-field="o.kondisi_dalam_perbaikan"/>
                                     </span>
                                 </td>
                             </tr>
@@ -90,7 +102,7 @@
         </template>
 
         <report 
-            string="Resep Obat" 
+            string="Laporan_Inventarisasi_Aset" 
             id="cpl_action_laporan_inventaris" 
             model="tabel.inventaris.aset" 
             report_type="qweb-pdf"

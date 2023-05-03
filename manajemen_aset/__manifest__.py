@@ -3,11 +3,16 @@
     'name': "manajemen_aset",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Modul ini adalah modul yang berfungsi sebagai sistem informasi manajemen aset.
+        Dimana kinerja modul ini disesuaikan dengan kebutuhan PT. Aston Graphindo Indonesia dalam pengelolaan aset perusahaan.""",
 
     'description': """
-        Long description of module's purpose
+        Hal-hal yang dapat dilakukan modul ini adalah sebagai berikut:\n
+        1. Membuat, melihat, mengedit, menghapus dan mencetak  data aset.\n
+        2. Membuat, melihat, mengedit, menghapus data member.\n
+        3. Membuat, melihat, mengedit, menghapus dan mencetak  data pengadaan aset.\n
+        4. Membuat, melihat, mengedit, menghapus dan mencetak  data peminjaman aset.\n
+        5. Membuat, melihat, mengedit, menghapus dan mencetak  data inventarisasi aset.
     """,
 
     'author': "My Company",
@@ -30,7 +35,7 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
-        # 'views/auth_signup_inherit.xml',
+        'views/auth_signup_inherit.xml',
         'views/templates.xml',
         'report/laporan_aset.xml',
         'report/laporan_member.xml',

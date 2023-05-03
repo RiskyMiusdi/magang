@@ -87,7 +87,7 @@
         </template>
 
         <report 
-            string="Resep Obat" 
+            string="Laporan Aset" 
             id="cpl_action_laporan_aset" 
             model="tabel.aset" 
             report_type="qweb-pdf"

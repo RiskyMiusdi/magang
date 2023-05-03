@@ -7,20 +7,24 @@
                 <div class="page">
                     <div class="oe_structure"/>
 
-                    <h1 class="text-center">Resep Obat</h1>
+                    <h1 class="text-center">Laporan Peminjaman Aset</h1>
 
                     <div class="row mt32 mb32">
                         <div t-if="o.name" class="col-xs-3">
-                            <strong>Nomor :</strong>
+                            <strong>Id Peminjaman :</strong>
                             <p t-field="o.name"/>
+                        </div>
+                        <div t-if="o.judul_peminjaman" class="col-xs-3">
+                            <strong>Judul Peminjaman :</strong>
+                            <p t-field="o.judul_peminjaman"/>
                         </div>
                         <div t-if="o.tanggal_peminjaman" class="col-xs-3">
                             <strong>tanggal peminjaman :</strong>
                             <p t-field="o.tanggal_peminjaman"/>
                         </div>
-                        <div t-if="o.keterangan" class="col-xs-3">
-                            <strong>keterangan :</strong>
-                            <p t-field="o.keterangan"/>
+                        <div t-if="o.keperluan" class="col-xs-3">
+                            <strong>keperluan :</strong>
+                            <p t-field="o.keperluan"/>
                         </div>
 
 
@@ -29,11 +33,11 @@
                     <table class="table table-condensed">
                         <thead>
                             <tr>
-                                <th><strong>Obat</strong></th>
-                                <th><strong>Aturan Minum</strong></th>
-                                <th><strong>Sebelum/Sesudah Makan</strong></th>
-                                <th><strong>Quantity</strong></th>
-                                <th><strong>Satuan</strong></th>
+                                <th><strong>Merek</strong></th>
+                                <th><strong>Jumlah Pinjam</strong></th>
+                                <th><strong>Lokasi Penggunaan</strong></th>
+                                <th><strong>tanggal_kembali</strong></th>
+                                <th><strong>id Peminjam </strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,27 +45,29 @@
                                 <td>
                                     <span>
                                         
-                                        <p t-field="o.name"/>
+                                        <p t-field="o.merek"/>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span>                                    
+                                        <p t-field="o.jumlah_pinjam"/>
                                     </span>
                                 </td>
                                 <td>
                                     <span>
-                                        jumlah
+                                        <p t-field="o.lokasi_penggunaan"/>                                    
                                     </span>
                                 </td>
                                 <td>
                                     <span>
-                                    keterangan
-                                    </span>
-                                </td>
-                                <td>
-                                    <span>
-                                    merek
+                                        <p t-field="o.tanggal_kembali"/>                                    
+                                    
                                     </span>
                                 </td>
                                 <td>
                                 <span>
-                                kode_pengadaan
+                                
+                                        <p t-field="o.id_peminjam"/>                                    
                                     </span>
                                 </td>
                             </tr>
@@ -90,7 +96,7 @@
         </template>
 
         <report 
-            string="Resep Obat" 
+            string="Laporan Peminjaman Aset" 
             id="cpl_action_laporan_peminjaman" 
             model="tabel.peminjaman.aset" 
             report_type="qweb-pdf"
