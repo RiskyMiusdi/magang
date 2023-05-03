@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <!-- <template id="listing"> -->
+        <!--   <ul> -->
+        <!--     <li t-foreach="objects" t-as="object"> -->
+        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
+        <!--         <t t-esc="object.display_name"/> -->
+        <!--       </a> -->
+        <!--     </li> -->
+        <!--   </ul> -->
+        <!-- </template> -->
+        <!-- <template id="object"> -->
+        <!--   <h1><t t-esc="object.display_name"/></h1> -->
+        <!--   <dl> -->
+        <!--     <t t-foreach="object._fields" t-as="field"> -->
+        <!--       <dt><t t-esc="field"/></dt> -->
+        <!--       <dd><t t-esc="object[field]"/></dd> -->
+        <!--     </t> -->
+        <!--   </dl> -->
+        <!-- </template> -->
+
+
+
+<!-- 
+<template id="custom_login_page" inherit_id="web.login_layout">
+	 xpath is used to remove Manage Databases from view 
+    <xpath expr="//div[contains(@class, 'o_database_list')]/div[2]" position="replace">
+    	<div class="text-center" t-if="not disable_footer">                    
+            <a href="https://www.odoo.com" target="_blank">Powered by <span>Odoo</span></a>
+        </div>
+    </xpath>
+</template> -->
+
+        <!-- <template id="custom_signup_page" inherit_id="auth_signup.signup">
+
+          <xpath expr="//div[@class='form-group field-login']" position="after">
+                <select id="hak_akses">
+                    <option value="basic_management">Basic Management</option>
+                    <option value="development_process">Development Process</option>
+                    <option value="marketing_department">Marketing Department</option>
+                    <option value="scrum_methodology">Scrum Methodology</option>
+                    <option value="customer_service">Customer Service</option>
+                    <option value="repair_workshop">Repair Workshop</option>
+                </select>
+          </xpath>     
+        </template>  -->
+ <!-- customize_show="True" name="Our Team" -->
+<!-- <template id="wkwk" inherit_id="auth_signup.fields">
+    <xpath expr="//div[contains(@class, 'form-group field-login')]" position="after">       
+            <div class="form-group field-agama">
+
+                <label for="groups_id" class="control-label">Agama</label>
+                <input type="select" name="groups_id" t-att-value="groups_id" id="groups_id" class="form-control"/>
+            </div>
+
+    </xpath>
+</template> -->
+
+
+
+
+    </data>
+</odoo>

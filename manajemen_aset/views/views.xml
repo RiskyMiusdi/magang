@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!--Aset - explicit list view definition -->
+    
+    <record model="ir.ui.view" id="list_aset">
+      <field name="name">Daftar Aset</field>
+      <field name="model">tabel.aset</field>
+      <field name="arch" type="xml">
+        <tree string="daftar_aset">
+          <field name="name"/>          
+          <field name="merek"/>
+                         
+        </tree>
+      </field>
+    </record>
+    
+    
+    <!-- Aset - actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="aset_action_window">
+      <field name="name">Daftar Aset</field>
+      <field name="res_model">tabel.aset</field>
+      <!-- kalau diisi tree saja, maka tombol create tidak akan menampilkan form ketika di klikkalau diisi form saja, maka langsung muncul form. tapi ketika di svae tidak muncul tampilan tree nya -->
+      <field name="view_mode">tree,form</field> 
+      <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Buatlah inputan pertamamu dengan klik tombol create</p>
+      </field>
+    </record> 
+    
+
+    <!-- ### Membuat Tampilan Form Aset ### 
+    
+    
+    -->
+		<!-- externalID-> kmm_manajemen_aset.aset_form_view   dimana rumusnya -> nama_modul.id_view -->
+    <record model="ir.ui.view" id="aset_form_view">
+    <!-- view name -> tampilan_form_aset -->
+      <field name="name">tampilan_form_aset</field>
+      <field name="model">tabel.aset</field>
+      <field name="arch" type="xml">
+      <form string="Form Aset">
+          <header>
+                   
+            <button string="Cetak" type="object" name="cetak_aset" class="btn-primary"/>
+          </header>
+          
+          <!-- <div id="main">
+              <group string="Products">
+                  <field name="group_product_variant" widget="radio"/>
+                  
+              </group>
+          </div>                     -->
+          <sheet>
+            <field name="foto" widget="image" class="oe_avatar"/>
+            <div class="oe_title">                
+              <field name="name" required="1" placeholder="ID Aset"/>
+              <field name="nama_aset"  required="1" placeholder="Nama Aset"/>                              
+            </div>
+
+            <div class="oe_clear"/>                  
+              <notebook>
+                <page string="Detail">
+                  <group>
+                    <field name="merek" required="1" placeholder="Contoh: Acer"/>
+                    <field name="jumlah" required="1"/>
+                    <field name="harga_per_unit" required="1"/>            
+                    <field name="harga_total" required="1" />	
+                    <field name="keterangan"/>        	        
+                  </group>  
+                </page>
+              </notebook>                     
+          </sheet>
+        </form>          
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+    
+    <menuitem name="Manajemen Aset" id="manajemen_aset.menu_root"/>
+    
+    <!-- menu categories -->
+    
+    <menuitem name="Data Master" id="manajemen_aset.menu_1" parent="manajemen_aset.menu_root"/>
+    <menuitem name="Data Transaksi" id="manajemen_aset.menu_2" parent="manajemen_aset.menu_root"/>
+    
+
+    <!-- actions -->
+    
+    <menuitem name="Aset" id="manajemen_aset.menu_1_list" parent="manajemen_aset.menu_1"
+              action="aset_action_window"/>
+      
+
+    <!--Member - explicit list view definition -->
+    
+    <record model="ir.ui.view" id="member_list">
+      <field name="name">member_list</field>
+      <field name="model">res.users</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>   
+          <field name="ruang_kerja"/>    
+        </tree>
+      </field>
+    </record>
+    
+    <!--Member - actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="member_action_window">
+      <field name="name">Member</field>
+      <field name="res_model">res.users</field>
+      <field name="view_mode">tree,form</field> <!-- kalau diisi tree saja, maka tombol create tidak akan menampilkan form ketika di klik--><!-- kalau diisi form saja, maka langsung muncul form. tapi ketika di svae tidak muncul tampilan tree nya-->
+      <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Buatlah inputan pertamamu dengan klik tombol create</p>
+      </field>
+    </record>
+
+
+    <!-- ### Membuat Tampilan Form Member ### -->
+
+
+    <record id="member_form_view" model="ir.ui.view">
+        <field name="name">formulir member</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <!-- <field name="inherit_id" ref="hr.view_employee_form"/> -->
+
+        <field name="arch" type="xml">
+          <xpath expr="//form" position="replace">
+            <form string="Users">
+              <sheet>
+                  <field name="id" invisible="1"/>
+                  <div class="oe_form_box_info oe_text_center" style="margin-bottom: 10px" attrs="{'invisible': [('id', '>', 0)]}">
+                      You are creating a new user. After saving, the user will receive an invite email containing a link to set its password.
+                  </div>
+                  <field name="image" widget='image' class="oe_avatar" options='{"preview_image": "image_medium"}'/>
+                  
+                  <div class="oe_title">
+                      <label for="name" class="oe_edit_only"/>
+                      <h1><field name="name" required="1"/></h1>
+                      <field name="email" invisible="1"/>
+                      <label for="login" class="oe_edit_only" string="Email Address"/>
+                      <h2>
+                          <field name="login"
+                                  placeholder="email@yourcompany.com"/>
+                      </h2>
+                      <label for="company_id" class="oe_edit_only" groups="base.group_multi_company"/>
+                      <field name="company_id" context="{'user_preference': 0}" groups="base.group_multi_company"/>
+                  </div>
+                  <group>
+                          <field name="password"/>
+                  </group>
+                  <notebook>
+                    <page string="Informasi Pribadi">
+                      <group>
+                          <field name="no_telepon"/>
+                          <field name="ruang_kerja"/>                          
+                      </group>
+                    </page>
+                    <page string="Lain-lain">
+                      <group>
+                          <field name="hak_akses"/>
+                      </group>
+                    </page>                    
+                  </notebook>                                                            
+              </sheet>
+            </form>
+          </xpath>
+                        
+        </field>        
+    </record>
+
+         
+
+    <!-- actions -->
+    
+    <menuitem name="Member" id="manajemen_aset.menu_2_list" parent="manajemen_aset.menu_1"
+              action="member_action_window"/>
+      
+    <!--Pengadaan Aset - explicit list view definition -->
+    
+    <record model="ir.ui.view" id="pengadaan_aset_list">
+      <field name="name">pengadaan aset list</field>
+      <field name="model">tabel.pengadaan.aset</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>          
+          <field name="merek"/>
+          <field name="tanggal_pengadaan"/>                  
+        </tree>
+      </field>
+    </record>
+    
+    <!--Pengadaan Aset - actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="pengadaan_aset_action_window">
+      <field name="name">Pengadaan Aset</field>
+      <field name="res_model">tabel.pengadaan.aset</field>
+      <field name="view_mode">tree,form</field> <!-- kalau diisi tree saja, maka tombol create tidak akan menampilkan form ketika di klik--><!-- kalau diisi form saja, maka langsung muncul form. tapi ketika di svae tidak muncul tampilan tree nya-->
+      <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Buatlah inputan pertamamu dengan klik tombol create</p>
+      </field>
+    </record>
+    
+    <!-- ### Membuat Tampilan Form Pengadaan Aset ### -->
+		
+    <record model="ir.ui.view" id="pengadaan_aset_form_view">
+      <field name="name">Formulir_Pengadaan_Aset</field>
+      <field name="model">tabel.pengadaan.aset</field>
+      <field name="arch" type="xml">
+        <form string="Form Pengadaan Aset">
+          <header>          
+              <button name="action_confirm" type="object" string="Confirm" states="draft" class="btn-primary"/>
+              <button name="action_cancel" type="object" string="Cancel" states="diajukan" groups="manajemen_aset.group_divisi_it_manager"/>              
+              <button name="action_cancel" type="object" string="Cancel" states="diajukan"/>              
+              <button name="action_close" type="object" string="Close" states="diajukan" class="btn-primary"/>              
+              <field name="state" widget="statusbar" statusbar_visible="draft,diajukan,disetujui"/>                
+              <button name="cetak_pengadaan" string="Cetak" type="object" class="btn-primary"/>
+          </header>
+          <sheet>
+            <group>
+              <group string="Formulir Pengadaan Aset">
+                <field name="name"/>
+                <field name="judul_pengadaan_aset"/>
+                <field name="merek"/>
+                <field name="jumlah"/>              
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+	    
+    <!-- actions -->
+    
+    <menuitem name="Pengadaan Aset" id="manajemen_aset.menu_3_list" parent="manajemen_aset.menu_2"
+              action="pengadaan_aset_action_window"/>
+
+
+    <!--Peminjaman Aset - explicit list view definition -->
+    
+    <record model="ir.ui.view" id="peminjaman_aset_list">
+      <field name="name">peminjaman aset list</field>
+      <field name="model">tabel.peminjaman.aset</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>          
+          <field name="judul_peminjaman"/>
+    
+        </tree>
+      </field>
+    </record>
+    
+    <!--Peminjaman Aset - actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="peminjaman_aset_action_window">
+      <field name="name">Peminjaman Aset</field>
+      <field name="res_model">tabel.peminjaman.aset</field>
+      <field name="view_mode">tree,form</field> <!-- kalau diisi tree saja, maka tombol create tidak akan menampilkan form ketika di klik--><!-- kalau diisi form saja, maka langsung muncul form. tapi ketika di svae tidak muncul tampilan tree nya-->
+      <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Buatlah inputan pertamamu dengan klik tombol create</p>
+      </field>
+    </record>
+    
+
+    <!-- ### Membuat Tampilan Form Peminjaman Aset ### -->
+		
+    <record model="ir.ui.view" id="peminjaman_aset_form_view">
+      <field name="name">Formulir_Peminjaman_Aset</field>
+      <field name="model">tabel.peminjaman.aset</field>
+      <field name="arch" type="xml">
+        <form string="Form Peminjaman Aset">
+          <header>
+            <button name="action_confirm" type="object" string="Confirm" states="draft" class="btn-primary"/>
+            <button name="action_cancel" type="object" string="Cancel" states="diajukan"/>
+            <button name="action_close" type="object" string="Close" states="diajukan" class="btn-primary"/>              
+            <field name="state" widget="statusbar" statusbar_visible="draft,diajukan,disetujui"/>                            
+            
+            <button name="cetak_peminjaman" string="Cetak" type="object" class="btn-primary"/>
+          </header>
+                <sheet>
+            <group>
+              <group string="Formulir Peminjaman Aset">
+                <field name="name"/>
+                <field name="judul_peminjaman"/>
+                <field name="merek"/>
+                <field name="jumlah_pinjam"/>
+                <field name="tanggal_peminjaman"/>
+                <field name="kode_peminjaman"/>
+                <field name="keperluan"/>
+                <field name="lokasi_penggunaan"/>
+                <field name="tanggal_kembali"/>
+                <field name="nama_peminjam"/>          
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+	    
+    
+
+    <!-- actions -->
+    
+    <menuitem name="Peminjaman Aset" id="manajemen_aset.menu_4_list" parent="manajemen_aset.menu_2"
+              action="peminjaman_aset_action_window"/>
+
+
+    <!--inventaris Aset - explicit list view definition -->
+    
+    <record model="ir.ui.view" id="inventaris_aset_list">
+      <field name="name">inventaris aset list</field>
+      <field name="model">tabel.inventaris.aset</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>          
+          <field name="lokasi_aset"/>                    
+        </tree>
+      </field>
+    </record>
+    
+    <!--inventaris Aset - actions opening views on models -->
+    
+    <record model="ir.actions.act_window" id="inventaris_aset_action_window">
+      <field name="name">inventaris Aset</field>
+      <field name="res_model">tabel.inventaris.aset</field>
+      <field name="view_mode">tree,form</field> <!-- kalau diisi tree saja, maka tombol create tidak akan menampilkan form ketika di klik--><!-- kalau diisi form saja, maka langsung muncul form. tapi ketika di svae tidak muncul tampilan tree nya-->
+      <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Buatlah inputan pertamamu dengan klik tombol create</p>
+      </field>
+    </record>
+    
+
+    <!-- ### Membuat Tampilan Form inventaris Aset ### -->
+		
+    <record model="ir.ui.view" id="inventaris_aset_form_view">
+      <field name="name">Formulir_inventaris_Aset</field>
+      <field name="model">tabel.inventaris.aset</field>
+      <field name="arch" type="xml">
+        <form string="Form inventaris Aset">
+          <header>
+            <button name="action_confirm" type="object" string="Confirm" states="draft" class="btn-primary"/>
+            <button name="action_cancel" type="object" string="Cancel" states="diajukan"/>
+            <button name="action_close" type="object" string="Close" states="diajukan" class="btn-primary"/>              
+            <field name="state" widget="statusbar" statusbar_visible="draft,diajukan,disetujui"/>                            
+            
+            <button name="cetak_inventaris" string="Cetak" type="object" class="btn-primary"/>
+          </header>
+                <sheet>
+            <group>
+              <group string="Formulir inventaris Aset">
+                <field name="name"/>
+                <field name="judul_inventaris"/>
+                <field name="kondisi_baik"/>
+                <field name="kondisi_rusak"/>
+                <field name="kondisi_dalam_perbaikan"/>
+                <field name="tanggal_inventaris"/>
+                <field name="lokasi_aset"/>
+                <field name="harga_per_unit"/>
+                <field name="harga_total_aset"/>
+                <field name="tanggal_pengadaan"/>
+                <field name="kode_pengadaan"/>
+                <field name="status_pengadaan"/>
+                <field name="nama_pengaju"/>
+                <field name="petugas_aproval"/>
+                <field name="keterangan"/>
+                <field name="kode_inventaris"/>
+                <field name="petugas_inventaris"/>                
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+	    
+    
+
+    <!-- actions -->
+    
+    <menuitem name="Inventaris Aset" id="manajemen_aset.menu_5_list" parent="manajemen_aset.menu_2"
+              action="inventaris_aset_action_window"/>
+
+
+  </data>
+</odoo>

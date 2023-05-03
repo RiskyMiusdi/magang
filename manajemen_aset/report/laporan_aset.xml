@@ -1,0 +1,99 @@
+<odoo>
+    <data>
+
+        <template id="laporan_aset_document">
+            <t t-call="report.external_layout">
+                <t t-set="o" t-value="o.with_context({})"/>
+                <div class="page">
+                    <div class="oe_structure"/>
+
+                    <h1 class="text-center">Laporan Aset</h1>
+
+                    <div class="row mt32 mb32">
+                        <div t-if="o.name" class="col-xs-3">
+                            <strong>ID Aset :</strong>
+                            <p t-field="o.name"/>
+                        </div>
+                        <div t-if="o.nama_aset" class="col-xs-3">
+                            <strong>nama_aset :</strong>
+                            <p t-field="o.nama_aset"/>
+                        </div>
+                        <div t-if="o.jumlah" class="col-xs-3">
+                            <strong>jumlah :</strong>
+                            <p t-field="o.jumlah"/>
+                        </div>
+                    </div>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th><strong>Merek</strong></th>
+                                <th><strong>Harga Per Unit</strong></th>
+                                <th><strong>Harga Total</strong></th>
+                                <th><strong>Keterangan</strong></th>
+                                <th><strong>Foto</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span>                                        
+                                        <p t-field="o.merek"/>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span>
+                                        <p t-field="o.harga_per_unit"/>                                        
+                                    </span>
+                                </td>
+                                <td>
+                                    <span>
+                                        <p t-field="o.harga_total"/>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span>
+                                        <p t-field="o.keterangan"/>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span>
+                                        <img t-att-src="'data:image/png;base64,%s' % (o.foto,)" style="max-height:85pt;max-width:90%" alt="Employee Image"/>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="oe_structure"/>
+                    
+                    <div class="row" name="ttd" style="padding-top:20px;">
+                        <div class="col-xs-4" style="text-align:center">
+                            <div style="padding-bottom:60px;">Tertanda,</div>
+                            <div>   ( <span t-field="user.name"/> )</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </t>
+        </template>
+
+        <template id="laporan_aset">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="manajemen_aset.laporan_aset_document"/>
+                </t>
+            </t>
+        </template>
+
+        <report 
+            string="Resep Obat" 
+            id="cpl_action_laporan_aset" 
+            model="tabel.aset" 
+            report_type="qweb-pdf"
+            name="manajemen_aset.laporan_aset" 
+            file="manajemen_aset.laporan_aset" 
+        />
+
+    </data>
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+	<record id="group_admin" model="res.groups">
+		<field name="name">admin</field>
+	</record>
+
+	<record id="group_owner" model="res.groups">
+		<field name="name">Owner</field>
+	</record>
+
+	<record id="group_komisaris" model="res.groups">
+		<field name="name">Komisaris</field>
+	</record>
+
+	<record id="group_divisi_legal_manager" model="res.groups">
+		<field name="name">Divisi Legal/Manager</field>
+	</record>
+
+	<record id="group_divisi_it_manager" model="res.groups">
+		<field name="name">Divisi IT/Manager</field>
+	</record>
+
+	<record id="group_divisi_it_programmer" model="res.groups">
+		<field name="name">Divisi IT/Programmer</field>
+	</record>
+
+
+
+</odoo>
