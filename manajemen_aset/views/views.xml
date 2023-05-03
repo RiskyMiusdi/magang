@@ -223,7 +223,7 @@
                 <field name="name"/>
                 <field name="judul_pengadaan_aset"/>
                 <field name="merek"/>
-                <field name="jumlah"/>              
+                <field name="id_pengaju"/>              
               </group>
             </group>
           </sheet>
@@ -286,11 +286,11 @@
                 <field name="merek"/>
                 <field name="jumlah_pinjam"/>
                 <field name="tanggal_peminjaman"/>
-                <field name="kode_peminjaman"/>
+                <field name="tanggal_kembali"/>
                 <field name="keperluan"/>
                 <field name="lokasi_penggunaan"/>
-                <field name="tanggal_kembali"/>
-                <field name="nama_peminjam"/>          
+                <field name="id_peminjam"/>
+       
               </group>
             </group>
           </sheet>

@@ -4,10 +4,10 @@ from odoo import models, fields, api
 
 #bagian daftar aset
 class daftar_aset(models.Model):
-      _name = 'tabel.aset'    
+      _name             = 'tabel.aset'    
 
-      name = fields.Char(string="ID Aset")      
-      nama_aset         = fields.Char(string="Nama Aset")      
+      name              = fields.Char(string="ID Aset")      
+      nama_aset         = fields.Char(string="Nama Aset")            
       merek             = fields.Char(string="Merek Aset")
       jumlah            = fields.Float()
       harga_per_unit    = fields.Integer()
@@ -29,27 +29,20 @@ class daftar_aset(models.Model):
 class member(models.Model):      
       _inherit = 'res.users'
 
-                  
       no_telepon        = fields.Char(string="No Telepon")
       ruang_kerja       = fields.Char(string="ruang kerja")
       hak_akses = fields.Many2many('res.groups', 'res_groups_users_rel', 'uid', 'gid')
       
-      
-   
-
 #bagian pengadaan aset
 class pengadaan_aset(models.Model):
       _name = 'tabel.pengadaan.aset'
 
       name                  = fields.Char(string="Id Pengadaan")
       judul_pengadaan_aset  = fields.Char(string="Judul Pengadaan")      
-      merek                 = fields.Char(string="Merek Aset")
-      jumlah                = fields.Integer()
-      harga_per_unit        = fields.Integer()
-      harga_total           = fields.Integer()      
-      tanggal_pengadaan     = fields.Date()    
-      nama_pengaju          = fields.Char(string="nama pengaju")
-      id_pengaju            = fields.Char(string="id pengaju")            
+      id_pengaju            = fields.Many2one('res.users', ondelete='cascade', string="ID Pengaju", required=True)                  
+      # merek                 = fields.Many2one('tabel.aset', ondelete='cascade', string="Merek", required=True)                
+      merek                 = fields.Char(string="Merek")                
+      tanggal_pengadaan     = fields.Date()
       keterangan            = fields.Text(string="alasan pengadaan")
       state = fields.Selection([
         ('draft', 'Draft'),
@@ -79,15 +72,15 @@ class peminjaman_aset(models.Model):
 
       name                      = fields.Char(string="Id Peminjaman")
       judul_peminjaman          = fields.Char(string="Judul Peminjaman")      
-      merek                     = fields.Char(string="Merek Aset")
+      merek                     = fields.Many2one('tabel.aset', ondelete='cascade', string="Merek", required=True)
+      # fields.Char(string="Merek Aset")
       jumlah_pinjam             = fields.Integer()
-      tanggal_peminjaman        = fields.Date()
-      kode_peminjaman           = fields.Char(string="kode peminjaman")
+      tanggal_peminjaman        = fields.Date()      
       keperluan                 = fields.Text()
       lokasi_penggunaan         = fields.Char(string="lokasi penggunaan")
       tanggal_kembali           = fields.Date()   
-      nama_peminjam             = fields.Char(string="nama peminjam")
-
+      id_peminjam               = fields.Many2one('res.users', ondelete='cascade', string="ID Peminjam", required=True)
+      # nama_peminjam             = fields.Char(string="nama peminjam")
       state = fields.Selection([
         ('draft', 'Draft'),
         ('diajukan', 'Diajukan'),
