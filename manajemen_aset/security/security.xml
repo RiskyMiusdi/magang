@@ -21,7 +21,7 @@
 		<field name="name">Divisi IT/Manager</field>
 	</record>
 
-	<record id="group_divisi_it_programmer" model="res.groups">
+<record id="group_divisi_it_programmer" model="res.groups">
 		<field name="name">Divisi IT/Programmer</field>
 	</record>
 

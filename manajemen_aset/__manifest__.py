@@ -35,7 +35,7 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
-        'views/auth_signup_inherit.xml',
+
         'views/templates.xml',
         'report/laporan_aset.xml',
         'report/laporan_member.xml',
