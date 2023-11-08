@@ -3,11 +3,6 @@
 
 from odoo import models, fields, api
 
-
-
-#bagian daftar aset
-from odoo import models, fields, api
-
 class DaftarAset(models.Model):
   _name = 'tabel.aset'
 
@@ -48,10 +43,12 @@ class DaftarAset(models.Model):
   def _abc(self):
     self.harga_total = self.harga_per_unit * float(self.jumlah)
 
+  @api.multi
+  def cetak_aset(self):
+   return self.env['report'].get_action(self, 'manajemen_aset.laporan_aset')
   # @api.multi
-  # def cetak_aset(self):
-  # return self.env['report'].get_action(self, 'manajemen_aset.laporan_aset')
-
+  # def cetak_pengadaan(self):
+  #   return self.env['report'].get_action(self, 'manajemen_aset.laporan_pengadaan')
 
 
 #bagian member

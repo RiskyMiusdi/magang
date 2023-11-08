@@ -44,6 +44,7 @@
       <form string="Form Aset">
           <header>                   
             <button string="Cetak" type="object" name="cetak_aset" class="btn-primary"/>
+            <!-- <button name="cetak_pengadaan" string="Cetak" type="object" class="btn-primary"/> -->
           </header>
           
           

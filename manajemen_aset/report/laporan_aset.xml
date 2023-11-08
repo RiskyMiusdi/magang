@@ -18,10 +18,7 @@
                             <strong>nama_aset :</strong>
                             <p t-field="o.nama_aset"/>
                         </div>
-                        <div t-if="o.jumlah" class="col-xs-3">
-                            <strong>jumlah :</strong>
-                            <p t-field="o.jumlah"/>
-                        </div>
+                        
                     </div>
 
                     <table class="table table-condensed">
@@ -29,7 +26,7 @@
                             <tr>
                                 <th><strong>Merek</strong></th>
                                 <th><strong>Harga Per Unit</strong></th>
-                                <th><strong>Harga Total</strong></th>
+                               
                                 <th><strong>Keterangan</strong></th>
                                 <th><strong>Foto</strong></th>
                             </tr>
@@ -45,12 +42,7 @@
                                     <span>
                                         <p t-field="o.harga_per_unit"/>                                        
                                     </span>
-                                </td>
-                                <td>
-                                    <span>
-                                        <p t-field="o.harga_total"/>
-                                    </span>
-                                </td>
+                                </td>                                
                                 <td>
                                     <span>
                                         <p t-field="o.keterangan"/>
